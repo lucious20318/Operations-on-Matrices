@@ -48,6 +48,11 @@ public class Main
                 operations();
             }
 
+            else if(opt == 4)
+            {
+                ele_wise();
+            }
+
             else if(opt == 13)
             {
                 System.out.println("Exiting.......");
@@ -221,6 +226,7 @@ public class Main
 
         else
         {
+            System.out.println("Wrong option exiting......");
             System.exit(0);
         }
 
@@ -411,5 +417,132 @@ public class Main
         }
     }
     
+    public static void ele_wise()
+    {
+        System.out.println("Enter the operation you want to perform element-wise :");
+        System.out.println("1. Addition");
+        System.out.println("2. Subtraction");
+        System.out.println("3. Multiplication");
+        System.out.println("4. Divsion");
+
+        System.out.print("\nChoice :");
+        int cho = sc.nextInt();
+
+        if(cho == 1)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            addition(id1, id2);
+        }
+
+        else if(cho == 2)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            subtraction(id1, id2);
+        }
+
+        else if(cho == 3)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            multiplication_elewise(id1,id2);
+        }
+
+        else if(cho == 4)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            Division_elewise(id1, id2);
+        }
+
+        else
+        {
+            System.out.println("Wrong option exiting......");
+            System.exit(0);
+        }
+    }
+
+    public static void multiplication_elewise(String id1, String id2)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+        
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+
+        int order = z.get(0);
+
+        System.out.println("Resultant matrix is :");
+        
+        for(int i=0; i<order; i++)
+        {
+            for(int j=0; j<order; j++)
+            {
+                int ele = x.get(i).get(j) * y.get(i).get(j);
+
+                System.out.print(ele + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Division_elewise(String id1, String id2)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+        
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+
+        int order = z.get(0);
+
+        if(sin.check(id2) == 0)
+        {
+            System.out.println("Error..The divisor is a singular matrix , DIVISION not possible.");
+            return;
+        }
+
+        ArrayList<ArrayList<Float>> res_inv = new ArrayList<>();
+
+        res_inv = Inverse.cal_inv(y,order);
+        
+        System.out.println("Resultant matrix is :");
+        
+        for(int i=0; i<order; i++)
+        {
+            for(int j=0; j<order; j++)
+            {
+                float ele = x.get(i).get(j)/res_inv.get(i).get(j);
+
+                System.out.print(ele + " ");
+            }
+            System.out.println();
+        }
+    }
 }
 
