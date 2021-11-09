@@ -21,7 +21,7 @@ public class Scalar extends Diagonal
 
         flag = diag(x, order);
 
-        for(int i=0; i<order; i++)
+        for(int i=0; i<order-1; i++)
         {
             if(x.get(i).get(i) != x.get(i+1).get(i+1))
             {
@@ -32,7 +32,7 @@ public class Scalar extends Diagonal
 
         if(flag == 0)
         {
-            System.out.println(id + " is a diagonal matrix");
+            System.out.println(id + " is a scalar matrix");
         }
 
         return;
