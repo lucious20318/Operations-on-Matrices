@@ -1,3 +1,8 @@
+import java.util.*; 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.io.*;
+
 public class Lower extends Square
 {
     @Override
@@ -28,7 +33,7 @@ public class Lower extends Square
 
         if(flag == 0)
         {
-            System.out.println(id + "is a lower triangular matrix");
+            System.out.println(id + " is a lower triangular matrix");
         }     
         
         return;
