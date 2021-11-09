@@ -5,8 +5,8 @@ import java.io.*;
 
 public class Ones extends Rectangular
 {
-    @Override
-    public void checker(String id)
+    
+    public int check(String id)
     {
         ArrayList<ArrayList<Integer>> x = new ArrayList<>();
         ArrayList<Integer> z = new ArrayList<>();
@@ -37,6 +37,25 @@ public class Ones extends Rectangular
             System.out.println(id + " is a ones matrix");
         }
 
-        return;
+        int f = 0;
+
+        for(int i=0; i<o1; i++)
+        {
+            for(int j=0; j<o2; j++)
+            {
+                if(x.get(i).get(j) != 0)
+                {
+                    f = 1;
+                    break;
+                }
+            }
+        }
+
+        if(f == 0)
+        {
+            System.out.println(id + " is a null matrix");
+        }
+    
+        return f;
     }
 }
