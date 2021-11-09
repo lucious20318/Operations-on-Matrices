@@ -1,6 +1,7 @@
 import java.security.GeneralSecurityException;
 import java.util.*;
 
+import javax.crypto.AEADBadTagException;
 import javax.lang.model.util.ElementScanner14;
 import javax.swing.text.LayoutQueue;
 
@@ -599,7 +600,7 @@ public class Main
                 int ele = x.get(j).get(i);
                 trans.add(ele);
             }
-            
+
             y.add(trans);
         }
 
@@ -805,6 +806,7 @@ public class Main
     public static void mat_add()
     {
         ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
         ArrayList<Integer> z = new ArrayList<>();
 
         System.out.print("\nEnter the id of the matrix: ");
@@ -813,10 +815,20 @@ public class Main
         x = mat.getter_mat(id);
         z = mat.getter_ord(id);
 
-        int o1 = z.get(0);
-        int o2 = z.get(1);
+        int order = z.get(0);
 
+        y = Inverse.transpose(x, order);
 
+        System.out.println("The sum of the two matrices is :");
+        for(int i=0; i<order; i++)
+        {
+            for(int j=0; j<order; j++)
+            {
+                int ele = x.get(i).get(j) + y.get(i).get(j);
+                System.out.print(ele + " ");
+            }
+            System.out.println();
+        }
     }
 }
 
