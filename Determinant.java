@@ -1,3 +1,8 @@
+import java.util.*; 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.io.*;
+
 public class Determinant extends Square
 {
     public static int deter(ArrayList<ArrayList<Integer>> x, int order)
