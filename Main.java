@@ -1,6 +1,7 @@
 import java.security.GeneralSecurityException;
 import java.util.*;
 
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.text.LayoutQueue;
 
 public class Main 
@@ -77,15 +78,17 @@ public class Main
     public static Diagonal ide = new Identity();
 
     public static Square mat_det = new Determinant();
+
     public static Singular sin = new Singular();
-    public static Determinant inv = new Inverse();
+    public static Inverse inv = new Inverse();
 
     public static Rectangular row_ = new Row();
     public static Rectangular col_ = new Column();
-    public static Ones ones_ = new Ones();
     public static Rectangular single = new Singleton();
-    //public static Null nul = new Null();
 
+    public static Ones ones_ = new Ones();
+    
+    //public static Null nul = new Null();
 
     public static void mat_input()
     {
@@ -141,12 +144,12 @@ public class Main
             ske.checker(id);
             upp.checker(id);
             low.checker(id);
-            sin.checker(id);
+            int w = sin.checker(id);
             dia.checker(id);
             sca.checker(id);
             ide.checker(id);
             single.checker(id);
-            int w = ones_.check(id);
+            int q = ones_.check(id);
         }
 
         else
@@ -183,7 +186,7 @@ public class Main
             addition(id1, id2);
         }
 
-        if(cho == 2)
+        else if(cho == 2)
         {
             System.out.print("\n Enter the first id: ");
             String id1 = scan.next();
@@ -194,7 +197,7 @@ public class Main
             subtraction(id1, id2);
         }
 
-        if(cho == 3)
+        else if(cho == 3)
         {
             System.out.print("\n Enter the first id: ");
             String id1 = scan.next();
@@ -203,6 +206,22 @@ public class Main
             String id2 = scan.next();
 
             multiplication(id1,id2);
+        }
+
+        else if(cho == 4)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            Division(id1, id2);
+        }
+
+        else
+        {
+            System.exit(0);
         }
 
     }
@@ -339,7 +358,57 @@ public class Main
 
     public static void Division(String id1, String id2)
     {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
 
+        ArrayList<Integer> z = new ArrayList<>();
+        ArrayList<Integer> w = new ArrayList<>();
+        
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+        w = mat.getter_ord(id2);
+
+        int z1 = z.get(0);
+        int z2 = z.get(1);
+
+        int w1 = w.get(0);
+        int w2 = w.get(1);
+
+        if(sin.check(id2) == 0)
+        {
+            System.out.println("Error..The divisor is a singular matrix , DIVISION not possible.");
+            return;
+        }
+
+        ArrayList<ArrayList<Float>> res_inv = new ArrayList<>();
+        float mul[][] = new float[z1][w2];
+
+        res_inv = Inverse.cal_inv(y,w1);
+
+        for (int i=0; i<z1; i++)
+        {
+            for (int j=0; j<w2; j++)
+            {
+                for (int k=0; k<w2; k++)
+                {
+                    mul[i][j] += x.get(i).get(k) * res_inv.get(k).get(j);
+                }
+            }
+        }
+
+        System.out.print("\nResultant matrix is :");
+        System.out.println();
+        for(int i=0; i<z1; i++)
+        {
+            for(int j=0; j<w2; j++)
+            {
+                System.out.print(mul[i][j] + " ");
+            }
+
+            System.out.println();
+        }
     }
     
 }
