@@ -30,7 +30,7 @@ public class Matrix
     }
 }
 
-public class Rectangular extends Matrix
+/*public class Rectangular extends Matrix
 {
     @Override
     public void checker(String id)
@@ -39,9 +39,9 @@ public class Rectangular extends Matrix
 
         return;
     }
-}
+}*/
 
-public class Square extends Matrix
+/*public class Square extends Matrix
 {
     @Override
     public void checker(String id)
@@ -57,9 +57,9 @@ public class Square extends Matrix
 
         return;
     }
-}
+}*/
 
-public class Row extends Rectangular
+/*public class Row extends Rectangular
 {
     @Override
     public void checker(String id)
@@ -75,9 +75,9 @@ public class Row extends Rectangular
 
         return;
     }
-}
+}*/
 
-public class Column extends Rectangular
+/*public class Column extends Rectangular
 {
     @Override
     public void checker(String id)
@@ -93,9 +93,9 @@ public class Column extends Rectangular
 
         return;
     }
-}
+}*/
 
-public class Symmetric extends Square
+/*public class Symmetric extends Square
 {
     @Override 
     public void checker(String id)
@@ -156,9 +156,9 @@ public class Symmetric extends Square
 
         return y;
     }
-}
+}*/
 
-public class Skew extends Symmetric
+/*public class Skew extends Symmetric
 {
     @Override
     public void checker(String id)
@@ -204,7 +204,7 @@ public class Skew extends Symmetric
     }
 }
 
-public class Upper extends Square
+/*public class Upper extends Square
 {
     @Override 
     public void checker(String id)
@@ -239,9 +239,9 @@ public class Upper extends Square
 
         return;
     }
-}
+}*/
 
-public class Lower extends Square
+/*public class Lower extends Square
 {
     @Override
     public void checker(String id)
@@ -276,9 +276,9 @@ public class Lower extends Square
         
         return;
     }
-}
+}*/
 
-public class Determinant extends Square
+/*public class Determinant extends Square
 {
     public static int deter(ArrayList<ArrayList<Integer>> x, int order)
     {
@@ -437,7 +437,7 @@ public class Inverse extends Determinant
             }
 
             adjoint_mat.add(row_wise);
-        }*/
+        }
 
         adjoint_mat = transpose(adjoint_mat, order);
 
@@ -684,4 +684,4 @@ public class Null extends Rectangular
 
         return;
     }
-}
+}*/
