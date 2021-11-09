@@ -259,3 +259,23 @@ public class Lower extends Square
         }        
     }
 }
+
+public class Determinant extends Square
+{
+    public int deter()
+    {
+
+    }
+
+    public void co_factor()
+    {
+        
+    }
+}
+
+public class Inverse extends Square
+{
+    
+}
+
+public class 
