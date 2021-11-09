@@ -262,14 +262,53 @@ public class Lower extends Square
 
 public class Determinant extends Square
 {
-    public int deter()
+    public int deter(ArrayList<ArrayList<Integer>> x, int order)
     {
+        int det = 0;
+        ArrayList<ArrayList<Integer>> cofac = new ArrayList<>();
+        int alt_sign = 1;
+        int temp = 0;
 
+
+        if(order == 1)
+        {
+            return x.get(0).get(0);
+        }
+
+        for(int i=0; i<order; i++)
+        {
+            co_factor(x,cofac,temp,i,order);
+
+            det = det + (alt_sign * x.get(0).get(i) * deter(temp, order-1));
+            
+            alt_sign = alt_sign * (-1) ;
+        }
+
+        return det;
     }
 
-    public void co_factor()
+    public void co_factor(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> cofac,int temp,int i, int order)
     {
-        
+        int flag = 0;
+
+        for(int r=0; r<order; r++)
+        {
+            ArrayList<Integer> ele = new ArrayList<>();
+
+            for(int c=0; c<order; c++)
+            {
+                if(r!=temp && c!= i)
+                {
+                    ele.add(x.get(r).get(c)); 
+                    flag = 1;      
+                }
+            }
+
+            if(flag == 1)
+            {
+                cofac.add(ele);
+            }
+        }
     }
 }
 
