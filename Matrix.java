@@ -262,7 +262,7 @@ public class Lower extends Square
 
 public class Determinant extends Square
 {
-    public int deter(ArrayList<ArrayList<Integer>> x, int order)
+    public static int deter(ArrayList<ArrayList<Integer>> x, int order)
     {
         int det = 0;
         ArrayList<ArrayList<Integer>> cofac = new ArrayList<>();
@@ -279,7 +279,7 @@ public class Determinant extends Square
         {
             co_factor(x,cofac,temp,i,order);
 
-            det = det + (alt_sign * x.get(0).get(i) * deter(temp, order-1));
+            det = det + (alt_sign * x.get(0).get(i) * deter(cofac, order-1));
             
             alt_sign = alt_sign * (-1) ;
         }
@@ -287,7 +287,7 @@ public class Determinant extends Square
         return det;
     }
 
-    public void co_factor(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> cofac,int temp,int i, int order)
+    public static void co_factor(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> cofac,int temp,int i, int order)
     {
         int flag = 0;
 
@@ -314,7 +314,59 @@ public class Determinant extends Square
 
 public class Inverse extends Square
 {
+    /*public static void Adjoint(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> adjoint_mat,int order)
+    {
+        
+        int alt_sign = 1;
+        ArrayList<ArrayList<Integer>> cofac = new ArrayList<>();
+
+        if(order == 1)
+        {
+            ArrayList<Integer> t = new ArrayList<>();
+            t.add(x.get(0).get(0));
+            adjoint_mat.add(t);
+            return;
+        }
+
+        int [][]temp = new int[order][order];
+
+        for(int i=0; i<order; i++)
+        {
+            ArrayList<Integer> row_wise = new ArrayList<>();
+            for(int j=0; j<order; j++)
+            {
+                co_factor(x,cofac,i,j,order);
+
+                alt_sign = (i+j)%2;
+
+                if(alt_sign == 0)
+                {
+                    alt_sign = 1;
+                }
+
+                else
+                {
+                    alt_sign = -1;
+                }
+
+                temp[j][i] = sign * (deter(cofac, order-1 ));
+            }
+        }
+
+        for(int i=0; i<order; i++)
+        {
+            ArrayList<Integer> row_wise = new ArrayList<>();
+            for(int j=0; j<order; j++);
+            {
+                row_wise.add(temp[i][j]);
+            }
+        }
+    }*/
+
     
 }
 
-public class 
+public class Singular extends Determinant
+{
+
+}
