@@ -65,10 +65,20 @@ public class Main
 
             else if(opt == 7)
             {
-                continue;
+                mean();
             }
 
-            else if(opt == 13)
+            else if(opt == 8)
+            {
+                cal_det();
+            }
+
+            else if(opt == 9)
+            {
+                single_ton();
+            }
+
+            else if(opt == 14)
             {
                 System.out.println("Exiting.......");
                 System.exit(0);
@@ -602,6 +612,134 @@ public class Main
         int order = ord.get(0);
 
         Inverse.cal_inv(x, order);
+    }
+
+    public static void mean()
+    {
+        System.out.println("Enter the mean operation :");
+        System.out.println("1. Row wise mean");
+        System.out.println("2. Column wise mean");
+        System.out.println("3. Mean of all the elements");
+
+        System.out.print("\nChoice :");
+        int cho = sc.nextInt();
+
+        if(cho == 1)
+        {
+            System.out.print("\nEnter the id of the matrix: ");
+            String id = scan.next();
+
+            ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+            ArrayList<Integer> ord = new ArrayList<>();
+    
+            x = mat.getter_mat(id);
+            ord = mat.getter_ord(id);
+    
+            int o1 = ord.get(0);
+            int o2 = ord.get(1);
+
+            for(int i=0; i<o1; i++)
+            {
+                int sum = 0;
+                int tot = 0;
+
+                for(int j=0; j<o2; j++)
+                {
+                    sum += x.get(i).get(j);
+                    tot++;
+                }
+
+                int rno = i+1;
+                int avg = sum/tot;
+                System.out.println("Mean of row " + rno + " is: " + avg);
+            }
+            
+        }
+        
+        else if(cho == 2)
+        {
+            System.out.print("\nEnter the id of the matrix: ");
+            String id = scan.next();
+
+            ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+            ArrayList<Integer> ord = new ArrayList<>();
+    
+            x = mat.getter_mat(id);
+            ord = mat.getter_ord(id);
+    
+            int o1 = ord.get(0);
+            int o2 = ord.get(1);
+
+            for(int i=0; i<o2; i++)
+            {
+                int sum = 0;
+                int tot = 0;
+
+                for(int j=0; j<o1; j++)
+                {
+                    sum += x.get(j).get(i);
+                    tot++;
+                }
+
+                int cno = i+1;
+                int avg = sum/tot;
+                System.out.println("Mean of column " + cno + " is: " + avg);
+            }
+        }
+        
+        else if(cho == 3)
+        {
+            System.out.print("\nEnter the id of the matrix: ");
+            String id = scan.next();
+
+            ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+            ArrayList<Integer> ord = new ArrayList<>();
+    
+            x = mat.getter_mat(id);
+            ord = mat.getter_ord(id);
+    
+            int o1 = ord.get(0);
+            int o2 = ord.get(1);
+
+            int sum = 0;
+            int tot = 0;
+
+            for(int i=0; i<o1; i++)
+            {
+                for(int j=0; j<o2; j++)
+                {
+                    sum += x.get(i).get(j);
+                    tot++;
+                }
+            }
+
+            int avg = sum/tot;
+            System.out.println("The mean of all the elements is :" + avg);
+        }
+
+        else
+        {
+            System.out.println("Wrong option,");
+            mean();
+        }
+    }
+
+    public static void cal_det()
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> ord = new ArrayList<>();
+
+        System.out.print("\nEnter the id of the matrix: ");
+        String id = scan.next();
+
+        x = mat.getter_mat(id);
+        ord = mat.getter_ord(id);
+
+        int order = ord.get(0);
+
+        int det = Determinant.deter(x, order);
+
+        System.out.println("The determinant of the matrix " + id + " is: " + det);
     }
 }
 
