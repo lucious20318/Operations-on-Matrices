@@ -32,7 +32,7 @@ public class Identity extends Diagonal
 
         if(flag == 0)
         {
-            System.out.println(id + " is a diagonal matrix");
+            System.out.println(id + " is a identity matrix");
         }
 
         return;
