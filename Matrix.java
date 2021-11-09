@@ -312,6 +312,27 @@ public class Determinant extends Square
     }
 }
 
+public class Singular extends Determinant
+{
+    @Override
+    public void checker(String id)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = getter_mat(id);
+        
+        z = getter_ord(id);
+
+        int order = z.get(0);
+
+        if(deter(x, order) == 0)
+        {
+            System.out.println(id + "is a singular matrix");
+        }
+    }
+}
+
 public class Inverse extends Square
 {
     /*public static void Adjoint(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> adjoint_mat,int order)
@@ -366,7 +387,3 @@ public class Inverse extends Square
     
 }
 
-public class Singular extends Determinant
-{
-
-}
