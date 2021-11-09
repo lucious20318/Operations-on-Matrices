@@ -462,6 +462,18 @@ public class Diagonal extends Square
 
         int flag = 0;
 
+        flag = diag(x,order);
+
+        if(flag == 0)
+        {
+            System.out.println(id + " is a diagonal matrix");
+        }
+    }
+
+    public int diag(ArrayList<ArrayList<Integer>> x, int order)
+    {
+        int flag = 0;
+
         for(int i=0; i<order; i++)
         {
             for(int j=0; j<order; j++)
@@ -469,19 +481,16 @@ public class Diagonal extends Square
                 if( i!=j && x.get(i).get(j)!=0)
                 {
                     flag = 1;
-                    break;
+                    return flag;
                 }
             }
         }
 
-        if(flag == 0)
-        {
-            System.out.println(id + " is a diagonal matrix");
-        }
+        return flag;
     }
 }
 
-public class Scalar extends Square
+public class Scalar extends Diagonal
 {
     @Override
     public void checker(String id)
@@ -497,21 +506,46 @@ public class Scalar extends Square
 
         int flag = 0;
 
-        for(int i=0; i<order; i++)
-        {
-            for(int j=0; j<order; j++)
-            {
-                if( i!=j && x.get(i).get(j)!=0)
-                {
-                    flag = 1;
-                    break;
-                }
-            }
-        }
+        flag = diag(x, order);
 
         for(int i=0; i<order; i++)
         {
             if(x.get(i).get(i) != x.get(i+1).get(i+1))
+            {
+                flag = 1;
+                break;
+            }
+        }
+
+        if(flag == 0)
+        {
+            System.out.println(id + " is a diagonal matrix");
+        }
+    }
+}
+
+
+public class Identity extends Diagonal
+{
+    @Override
+    public void checker(String id)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = getter_mat(id);
+        
+        z = getter_ord(id);
+
+        int order = z.get(0);
+
+        int flag = 0;
+
+        flag = diag(x, order);
+
+        for(int i=0; i<order; i++)
+        {
+            if(x.get(i).get(i) != 1)
             {
                 flag = 1;
                 break;
