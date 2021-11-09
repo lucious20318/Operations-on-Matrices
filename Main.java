@@ -26,9 +26,9 @@ public class Main
             System.out.println("9. Use singleton matrices as scalars, if requested");
             System.out.println("10. Compute A+A' for a matrix A.");
             System.out.println("11. Compute Eigen vectors and values.");
-            System.out.println("11. Solve sets of linear equations using matrices.");
-            System.out.println("12. Matrix with same labels");
-            System.out.println("13. Exit");
+            System.out.println("12. Solve sets of linear equations using matrices.");
+            System.out.println("13. Matrix with same labels");
+            System.out.println("14. Exit");
             System.out.println("--------------------------------");
 
             int opt = sc.nextInt();
@@ -51,6 +51,21 @@ public class Main
             else if(opt == 4)
             {
                 ele_wise();
+            }
+
+            else if(opt == 5)
+            {
+                cal_trans();
+            }
+
+            else if(opt == 6)
+            {
+                cal_inverse();
+            }
+
+            else if(opt == 7)
+            {
+                continue;
             }
 
             else if(opt == 13)
@@ -543,6 +558,50 @@ public class Main
             }
             System.out.println();
         }
+    }
+
+    public static void cal_trans()
+    {
+        System.out.print("\nEnter the matrix id: ");
+        String id = scan.next();
+
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+        ArrayList<Integer> ord = new ArrayList<>();
+
+        x = mat.getter_mat(id);
+        ord = mat.getter_ord(id);
+
+        int order = ord.get(0);
+
+        y = Inverse.transpose(x, order);
+
+        System.out.println("Transpose matrix of " + id + " is :" );
+        
+        for(int i=0; i<order; i++)
+        {
+            for(int j=0; j<order; j++)
+            {
+                System.out.print(y.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void cal_inverse()
+    {
+        System.out.print("\nEnter the matrix id: ");
+        String id = scan.next();
+
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> ord = new ArrayList<>();
+
+        x = mat.getter_mat(id);
+        ord = mat.getter_ord(id);
+
+        int order = ord.get(0);
+
+        Inverse.cal_inv(x, order);
     }
 }
 
