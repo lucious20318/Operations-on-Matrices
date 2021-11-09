@@ -1,3 +1,4 @@
+import java.security.GeneralSecurityException;
 import java.util.*;
 
 import javax.swing.text.LayoutQueue;
@@ -274,23 +275,31 @@ public class Main
         ArrayList<ArrayList<Integer>> y = new ArrayList<>();
 
         ArrayList<Integer> z = new ArrayList<>();
+        ArrayList<Integer> w = new ArrayList<>();
         
         x = mat.getter_mat(id1);
         y = mat.getter_mat(id2);
 
         z = mat.getter_ord(id1);
-        int order = z.get(0);
+        w = mat.getter_ord(id2);
+
 
         int x1 = ones_.check(id1);
         int x2 = ones_.check(id2);
+
+        int z1 = z.get(0);
+        int z2 = z.get(1);
+
+        int w1 = w.get(0);
+        int w2 = w.get(1);
 
         if(x1 == 0 || x2 == 0)
         {
             System.out.println("Resultant Matrix is :");
 
-            for (int i=0; i<order; i++)
+            for (int i=0; i<z1; i++)
             {
-                for (int j=0; j<order; j++)
+                for (int j=0; j<w2; j++)
                 {
                     System.out.print(0 + " ");
                 }
@@ -299,7 +308,39 @@ public class Main
             }
         }
 
+        int mul[][] = new int[z1][w2];
+ 
+        
+        for (int i=0; i<z1; i++)
+        {
+            for (int j=0; j<w2; j++)
+            {
+                for (int k=0; k<w2; k++)
+                {
+                    mul[i][j] += x.get(i).get(k) * y.get(k).get(j);
+                }
+            }
+        }
+
+        System.out.print("\nResultant matrix is :");
+        System.out.println();
+        for(int i=0; i<z1; i++)
+        {
+            for(int j=0; j<w2; j++)
+            {
+                System.out.print(mul[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+
 
     }
+
+    public static void Division(String id1, String id2)
+    {
+
+    }
+    
 }
 
