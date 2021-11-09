@@ -33,7 +33,7 @@ public class Upper extends Square
 
         if(flag == 0)
         {
-            System.out.println(id + "is a upper triangular matrix");
+            System.out.println(id + " is a upper triangular matrix");
         }
 
         return;
