@@ -41,6 +41,11 @@ public class Main
                 mat_labels();
             }
 
+            else if(opt == 3)
+            {
+                operations();
+            }
+
             else if(opt == 13)
             {
                 System.out.println("Exiting.......");
@@ -76,9 +81,9 @@ public class Main
 
     public static Rectangular row_ = new Row();
     public static Rectangular col_ = new Column();
-    public static Rectangular ones_ = new Ones();
+    public static Ones ones_ = new Ones();
     public static Rectangular single = new Singleton();
-    public static Rectangular nul = new Null();
+    //public static Null nul = new Null();
 
 
     public static void mat_input()
@@ -140,8 +145,7 @@ public class Main
             sca.checker(id);
             ide.checker(id);
             single.checker(id);
-            ones_.checker(id);
-            nul.checker(id);
+            int w = ones_.check(id);
         }
 
         else
@@ -150,10 +154,152 @@ public class Main
             row_.checker(id);
             col_.checker(id);
             single.checker(id);
-            ones_.checker(id);
-            nul.checker(id);
+            int w = ones_.check(id);
+            
         }
         
+    }
+
+    public static void operations()
+    {
+        System.out.println("Enter the operation you want to perform :");
+        System.out.println("1. Addition");
+        System.out.println("2. Subtraction");
+        System.out.println("3. Multiplication");
+        System.out.println("4. Divsion");
+
+        System.out.print("\nChoice :");
+        int cho = sc.nextInt();
+
+        if(cho == 1)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            addition(id1, id2);
+        }
+
+        if(cho == 2)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            subtraction(id1, id2);
+        }
+
+        if(cho == 3)
+        {
+            System.out.print("\n Enter the first id: ");
+            String id1 = scan.next();
+
+            System.out.print("\n Enter the second id: ");
+            String id2 = scan.next();
+
+            multiplication(id1,id2);
+        }
+
+    }
+
+    public static void addition(String id1, String id2)
+    {
+        
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+        
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+        int order = z.get(0);
+        
+        int sum[][] = new int[order][order];
+
+        System.out.println("New matrix : ");
+
+        for (int i=0; i<order; i++)
+        {
+            for (int j=0; j<order; j++)
+            {
+                sum[i][j] = x.get(i).get(j) + y.get(i).get(j);
+
+                System.out.print(sum[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void subtraction(String id1, String id2)
+    {
+                
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+        
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+        int order = z.get(0);
+        
+        int dif[][] = new int[order][order];
+
+        System.out.println("New matrix : ");
+
+        for (int i=0; i<order; i++)
+        {
+            for (int j=0; j<order; j++)
+            {
+                dif[i][j] = x.get(i).get(j) - y.get(i).get(j);
+
+                System.out.print(dif[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void multiplication(String id1, String id2)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+        
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+        int order = z.get(0);
+
+        int x1 = ones_.check(id1);
+        int x2 = ones_.check(id2);
+
+        if(x1 == 0 || x2 == 0)
+        {
+            System.out.println("Resultant Matrix is :");
+
+            for (int i=0; i<order; i++)
+            {
+                for (int j=0; j<order; j++)
+                {
+                    System.out.print(0 + " ");
+                }
+    
+                System.out.println();
+            }
+        }
+
+
     }
 }
 
