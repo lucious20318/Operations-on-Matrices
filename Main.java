@@ -78,6 +78,11 @@ public class Main
                 single_ton();
             }
 
+            else if(opt == 10)
+            {
+                mat_add();
+            }
+
             else if(opt == 14)
             {
                 System.out.println("Exiting.......");
@@ -582,15 +587,27 @@ public class Main
         x = mat.getter_mat(id);
         ord = mat.getter_ord(id);
 
-        int order = ord.get(0);
+        int o1 = ord.get(0);
+        int o2 = ord.get(1);
 
-        y = Inverse.transpose(x, order);
+        for(int i=0; i<o2; i++)
+        {
+            ArrayList<Integer> trans = new ArrayList<>();
+
+            for(int j=0; j<o1; j++)
+            {
+                int ele = x.get(j).get(i);
+                trans.add(ele);
+            }
+            
+            y.add(trans);
+        }
 
         System.out.println("Transpose matrix of " + id + " is :" );
         
-        for(int i=0; i<order; i++)
+        for(int i=0; i<o2; i++)
         {
-            for(int j=0; j<order; j++)
+            for(int j=0; j<o1; j++)
             {
                 System.out.print(y.get(i).get(j) + " ");
             }
@@ -740,6 +757,66 @@ public class Main
         int det = Determinant.deter(x, order);
 
         System.out.println("The determinant of the matrix " + id + " is: " + det);
+    }
+
+    public static void single_ton()
+    {
+        System.out.print("\nDo you allow using singleton matrices as a scalar value? (y/n)");
+        String ch = scan.next();
+
+        if(ch.equals("n") || ch.equals("N"))
+        {
+            return;
+        }
+
+        System.out.print("\nEnter the id of the matrix: ");
+        String id1 = scan.next();
+
+        System.out.print("\nEnter the id of the singleton matrix: ");
+        String id2 = scan.next();
+
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+
+        int o1 = z.get(0);
+        int o2 = z.get(1);
+
+        int scalar_ele = y.get(0).get(0);
+
+        for(int i=0; i<o1; i++)
+        {
+            for(int j=0; j<o2; j++)
+            {
+                int ele = scalar_ele * x.get(i).get(j);
+                System.out.print(ele + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void mat_add()
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> z = new ArrayList<>();
+
+        System.out.print("\nEnter the id of the matrix: ");
+        String id = scan.next();
+        
+        x = mat.getter_mat(id);
+        z = mat.getter_ord(id);
+
+        int o1 = z.get(0);
+        int o2 = z.get(1);
+
+
     }
 }
 
