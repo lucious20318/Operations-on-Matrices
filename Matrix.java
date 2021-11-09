@@ -277,7 +277,7 @@ public class Determinant extends Square
 
         for(int i=0; i<order; i++)
         {
-            co_factor(x,cofac,temp,i,order);
+            cofac = co_factor(x,cofac,temp,i,order);
 
             det = det + (alt_sign * x.get(0).get(i) * deter(cofac, order-1));
             
@@ -287,9 +287,12 @@ public class Determinant extends Square
         return det;
     }
 
-    public static void co_factor(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> cofac,int temp,int i, int order)
+    public static ArrayList<ArrayList<Integer>> co_factor(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> cofac,int temp,int i, int order)
     {
         int flag = 0;
+        ArrayList<ArrayList<Integer>> cofac_2 = new ArrayList<>();
+        //System.out.println();
+        //System.out.println(x);
 
         for(int r=0; r<order; r++)
         {
@@ -299,16 +302,25 @@ public class Determinant extends Square
             {
                 if(r!=temp && c!= i)
                 {
+                    //System.out.println(r + " " + c);
                     ele.add(x.get(r).get(c)); 
                     flag = 1;      
                 }
-            }
+            }   
 
-            if(flag == 1)
+            if(flag==1)
             {
-                cofac.add(ele);
+                cofac_2.add(ele);
             }
         }
+
+        //System.out.println(cofac_2);
+
+        cofac = cofac_2;
+
+        //System.out.println(cofac);
+
+        return cofac;
     }
 }
 
@@ -333,9 +345,9 @@ public class Singular extends Determinant
     }
 }
 
-public class Inverse extends Square
+public class Inverse extends Determinant
 {
-    /*public static void Adjoint(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> adjoint_mat,int order)
+    public static ArrayList<ArrayList<Integer>> Adjoint(ArrayList<ArrayList<Integer>> x, ArrayList<ArrayList<Integer>> adjoint_mat,int order)
     {
         
         int alt_sign = 1;
@@ -346,17 +358,23 @@ public class Inverse extends Square
             ArrayList<Integer> t = new ArrayList<>();
             t.add(x.get(0).get(0));
             adjoint_mat.add(t);
-            return;
+            return adjoint_mat;
         }
 
         int [][]temp = new int[order][order];
 
         for(int i=0; i<order; i++)
         {
-            ArrayList<Integer> row_wise = new ArrayList<>();
+            //ArrayList<Integer> row_wise = new ArrayList<>();
+
             for(int j=0; j<order; j++)
             {
-                co_factor(x,cofac,i,j,order);
+                //System.out.println(x);
+                //System.out.println();
+                
+                cofac = co_factor(x,cofac,i,j,order);
+                cofac.removeAll(Collections.singleton(new ArrayList<>()));
+                //System.out.println(cofac);
 
                 alt_sign = (i+j)%2;
 
@@ -370,20 +388,60 @@ public class Inverse extends Square
                     alt_sign = -1;
                 }
 
-                temp[j][i] = sign * (deter(cofac, order-1 ));
+                temp[j][i] = alt_sign * (deter(cofac, order-1 ));
             }
         }
 
+        //System.out.println("ncajsodsnjvnvjnjnvkcx");
+        
         for(int i=0; i<order; i++)
+        {
+            ArrayList<Integer> row_wise = new ArrayList<>();
+            for(int j=0; j<order; j++)
+            {
+                //System.out.print(temp[i][j] + " ");
+                row_wise.add(temp[i][j]);
+                //System.out.println();
+            }
+            adjoint_mat.add(row_wise);
+        }
+
+        /*for(int i=0; i<order; i++)
         {
             ArrayList<Integer> row_wise = new ArrayList<>();
             for(int j=0; j<order; j++);
             {
-                row_wise.add(temp[i][j]);
-            }
-        }
-    }*/
+                int q = temp[i][j];
 
-    
+                row_wise.add(q);
+            }
+
+            adjoint_mat.add(row_wise);
+        }*/
+
+        adjoint_mat = transpose(adjoint_mat, order);
+
+        return adjoint_mat;
+    }
+
+    public static ArrayList transpose(ArrayList<ArrayList<Integer>> x, int order)
+    {
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        for(int i=0; i<order; i++)
+        {
+            ArrayList<Integer> trans = new ArrayList<>();
+
+            for(int j=0; j<order; j++)
+            {
+                int ele = x.get(j).get(i);
+                trans.add(ele);
+            }
+
+            y.add(trans);
+        }
+
+        return y;
+    }
 }
 
