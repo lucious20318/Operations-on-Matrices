@@ -1,6 +1,8 @@
 import java.util.*; 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.*;
+import java.lang.annotation.Retention;
 
 public class Matrix 
 {
@@ -34,6 +36,8 @@ public class Rectangular extends Matrix
     public void checker(String id)
     {
         System.out.println(id + " is a rectangular matrix");
+
+        return;
     }
 }
 
@@ -50,6 +54,8 @@ public class Square extends Matrix
         {
             System.out.println(id + " is a square matrix");
         }
+
+        return;
     }
 }
 
@@ -66,6 +72,8 @@ public class Row extends Rectangular
         {
             System.out.println(id + " is a row matrix");
         }
+
+        return;
     }
 }
 
@@ -82,6 +90,8 @@ public class Column extends Rectangular
         {
             System.out.println(id + " is a row matrix");
         }
+
+        return;
     }
 }
 
@@ -123,6 +133,8 @@ public class Symmetric extends Square
         {
             System.out.println(id + " is a symmetric matrix");
         }
+
+        return;
     }
 
     public ArrayList transpose(ArrayList<ArrayList<Integer>> x, int order)
@@ -187,6 +199,8 @@ public class Skew extends Symmetric
         {
             System.out.println(id + " is a skew - symmetric matrix");
         }
+
+        return;
     }
 }
 
@@ -222,6 +236,8 @@ public class Upper extends Square
         {
             System.out.println(id + "is a upper triangular matrix");
         }
+
+        return;
     }
 }
 
@@ -256,7 +272,9 @@ public class Lower extends Square
         if(flag == 0)
         {
             System.out.println(id + "is a lower triangular matrix");
-        }        
+        }     
+        
+        return;
     }
 }
 
@@ -342,6 +360,8 @@ public class Singular extends Determinant
         {
             System.out.println(id + "is a singular matrix");
         }
+        
+        return;
     }
 }
 
@@ -468,6 +488,8 @@ public class Diagonal extends Square
         {
             System.out.println(id + " is a diagonal matrix");
         }
+        
+        return;
     }
 
     public int diag(ArrayList<ArrayList<Integer>> x, int order)
@@ -521,6 +543,8 @@ public class Scalar extends Diagonal
         {
             System.out.println(id + " is a diagonal matrix");
         }
+
+        return;
     }
 }
 
@@ -556,7 +580,108 @@ public class Identity extends Diagonal
         {
             System.out.println(id + " is a diagonal matrix");
         }
+
+        return;
     }
 }
 
 
+public class Singleton extends Rectangular
+{
+    @Override
+    public void checker(String id)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = getter_mat(id);
+        
+        z = getter_ord(id);
+
+        int o1 = z.get(0);
+        int o2 = z.get(1);
+
+        if(o1 == 1 && o2 == 1)
+        {
+            System.out.println(id + "is a singleton matrix");
+        }
+
+        return;
+    }
+}
+
+public class Ones extends Rectangular
+{
+    @Override
+    public void checker(String id)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = getter_mat(id);
+        
+        z = getter_ord(id);
+
+        int o1 = z.get(0);
+        int o2 = z.get(1);
+
+        int flag = 0;
+
+        for(int i=0; i<o1; i++)
+        {
+            for(int j=0; j<o2; j++)
+            {
+                if(x.get(i).get(j) != 1)
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+        }
+
+        if(flag == 0)
+        {
+            System.out.println(id + " is a ones matrix");
+        }
+
+        return;
+    }
+}
+
+public class Null extends Rectangular
+{
+    @Override
+    public void checker(String id)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = getter_mat(id);
+        
+        z = getter_ord(id);
+
+        int o1 = z.get(0);
+        int o2 = z.get(1);
+
+        int flag = 0;
+
+        for(int i=0; i<o1; i++)
+        {
+            for(int j=0; j<o2; j++)
+            {
+                if(x.get(i).get(j) != 0)
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+        }
+
+        if(flag == 0)
+        {
+            System.out.println(id + " is a null matrix");
+        }
+
+        return;
+    }
+}
