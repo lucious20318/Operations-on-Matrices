@@ -28,6 +28,11 @@ public class Matrix
     {
         matrices.put(id, mat_val);
     }
+
+    public HashMap getter_all()
+    {
+        return matrices;
+    }
 }
 
 /*public class Rectangular extends Matrix
