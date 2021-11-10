@@ -194,7 +194,7 @@ public class Main
             int c = ske.checker(id);
             int d = upp.checker(id);
             int g = low.checker(id);
-            int w = sin.checker(id);
+            int w = sin.check(id);
             int l = dia.checker(id);
             int k = sca.checker(id);
             int u = ide.checker(id);
