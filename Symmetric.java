@@ -16,6 +16,12 @@ public class Symmetric extends Square
         z = getter_ord(id);
 
         int order = z.get(0);
+        int order2 = z.get(1);
+
+        if(order != order2)
+        {
+            return 1;
+        }
 
         ArrayList<ArrayList<Integer>> y = new ArrayList<>();
         y = transpose(x,order);
@@ -29,7 +35,7 @@ public class Symmetric extends Square
                 int e1 = x.get(i).get(j);
                 int e2 = y.get(i).get(j);
 
-                if(e1!=e2)
+                if(e1 != e2)
                 {
                     flag = 1;
                     break;
