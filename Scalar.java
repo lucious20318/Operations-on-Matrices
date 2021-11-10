@@ -6,7 +6,7 @@ import java.io.*;
 public class Scalar extends Diagonal
 {
     @Override
-    public void checker(String id)
+    public int checker(String id)
     {
         ArrayList<ArrayList<Integer>> x = new ArrayList<>();
         ArrayList<Integer> z = new ArrayList<>();
@@ -33,8 +33,9 @@ public class Scalar extends Diagonal
         if(flag == 0)
         {
             System.out.println(id + " is a scalar matrix");
+            return 0;
         }
 
-        return;
+        return 1;
     }
 }
