@@ -77,7 +77,7 @@ public class Inverse extends Determinant
             adjoint_mat.add(row_wise);
         }*/
 
-        adjoint_mat = transpose(adjoint_mat, order);
+        //adjoint_mat = transpose(adjoint_mat, order);
 
         //System.out.println("adj: " + adjoint_mat);
 
@@ -106,7 +106,7 @@ public class Inverse extends Determinant
 
     public static ArrayList<ArrayList<Float>> cal_inv(ArrayList<ArrayList<Integer>> y, int order)
     {
-        int det = deter(y, order);
+        float det = deter(y, order);
 
         //System.out.println("determinant = " + det);
 
