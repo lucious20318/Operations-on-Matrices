@@ -6,7 +6,7 @@ import java.io.*;
 public class Diagonal extends Square
 {
     @Override
-    public void checker(String id)
+    public int checker(String id)
     {
         ArrayList<ArrayList<Integer>> x = new ArrayList<>();
         ArrayList<Integer> z = new ArrayList<>();
@@ -24,9 +24,10 @@ public class Diagonal extends Square
         if(flag == 0)
         {
             System.out.println(id + " is a diagonal matrix");
+            return 0;
         }
         
-        return;
+        return 1;
     }
 
     public int diag(ArrayList<ArrayList<Integer>> x, int order)
