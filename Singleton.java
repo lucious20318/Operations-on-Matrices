@@ -6,7 +6,7 @@ import java.io.*;
 public class Singleton extends Rectangular
 {
     @Override
-    public void checker(String id)
+    public int checker(String id)
     {
         ArrayList<ArrayList<Integer>> x = new ArrayList<>();
         ArrayList<Integer> z = new ArrayList<>();
@@ -21,8 +21,9 @@ public class Singleton extends Rectangular
         if(o1 == 1 && o2 == 1)
         {
             System.out.println(id + "is a singleton matrix");
+            return 0;
         }
 
-        return;
+        return 1;
     }
 }
