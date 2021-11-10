@@ -6,7 +6,7 @@ import java.io.*;
 public class Column extends Rectangular
 {
     @Override
-    public void checker(String id)
+    public int checker(String id)
     {
         ArrayList<Integer> order = new ArrayList<>();
 
@@ -15,8 +15,9 @@ public class Column extends Rectangular
         if(order.get(1) == 1)
         {
             System.out.println(id + " is a column matrix");
+            return 0;
         }
 
-        return;
+        return 1;
     }
 }
