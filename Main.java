@@ -887,17 +887,11 @@ public class Main
         else if(cho == 2)
         {
             ArrayList<ArrayList<Integer>> x = new ArrayList<>();
-            
-            ArrayList<Integer> z = new ArrayList<>();
 
             System.out.print("\nEnter the id of the matrix: ");
             String id = scan.next();
         
             x = mat.getter_mat(id);
-
-            z = mat.getter_ord(id);
-
-            int ord = z.get(0);
 
             float m11 = x.get(0).get(0);
             float m12 = x.get(0).get(1);
