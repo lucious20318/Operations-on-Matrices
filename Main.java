@@ -84,6 +84,21 @@ public class Main
                 mat_add();
             }
 
+            else if(opt == 11)
+            {
+                eigen();
+            }
+
+            else if(opt == 12)
+            {
+                continue;
+            }
+
+            else if(opt == 13)
+            {
+                retrieve_same();
+            }
+
             else if(opt == 14)
             {
                 System.out.println("Exiting.......");
@@ -175,31 +190,32 @@ public class Main
 
         if(ord1 == ord2)
         {
-            sq.checker(id);
-            sym.checker(id);
-            ske.checker(id);
-            upp.checker(id);
-            low.checker(id);
+            int a = sq.checker(id);
+            int b = sym.checker(id);
+            int c = ske.checker(id);
+            int d = upp.checker(id);
+            int g = low.checker(id);
             int w = sin.checker(id);
-            dia.checker(id);
-            sca.checker(id);
-            ide.checker(id);
-            single.checker(id);
-            int q = ones_.check(id);
+            int l = dia.checker(id);
+            int k = sca.checker(id);
+            int u = ide.checker(id);
+            int m = single.checker(id);
+            int q = ones_.check_o(id);
+            int e = ones_.check_n(id);
         }
 
         else
         {
-            rec.checker(id);
-            row_.checker(id);
-            col_.checker(id);
-            single.checker(id);
-            int w = ones_.check(id);
+            int a = rec.checker(id);
+            int b = row_.checker(id);
+            int c = col_.checker(id);
+            int d = single.checker(id);
+            int w = ones_.check_o(id);
+            int e = ones_.check_n(id);
             
         }
         
     }
-
     public static void operations()
     {
         System.out.println("Enter the operation you want to perform :");
@@ -340,8 +356,8 @@ public class Main
         w = mat.getter_ord(id2);
 
 
-        int x1 = ones_.check(id1);
-        int x2 = ones_.check(id2);
+        int x1 = ones_.check_n(id1);
+        int x2 = ones_.check_n(id2);
 
         int z1 = z.get(0);
         int z2 = z.get(1);
@@ -826,6 +842,126 @@ public class Main
             {
                 int ele = x.get(i).get(j) + y.get(i).get(j);
                 System.out.print(ele + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void eigen()
+    {
+
+    }
+
+    public static void retrieve_same()
+    {
+        System.out.println("Enter the type of Matrix you want:");
+        System.out.println("1. Rectangular");
+        System.out.println("2. Square");
+        System.out.println("3. Row");
+        System.out.println("4. Column");
+        System.out.println("5. Upper");
+        System.out.println("6. Lower");
+        System.out.println("7. Symmetric");
+        System.out.println("8. Skew");
+        System.out.println("9. Singular");
+        System.out.println("10. Diagonal");
+        System.out.println("11. Scalar");
+        System.out.println("12. Identity");
+        System.out.println("13. Singleton");
+        System.out.println("14. Ones");
+        System.out.println("15. Null");
+
+        System.out.print("\nChoice :");
+        int cho = sc.nextInt();
+
+        HashMap<String,ArrayList> matrix = new HashMap<>();
+
+        matrix = mat.getter_all();
+
+        for(HashMap.Entry<String,ArrayList> trav : matrix.entrySet())
+        {
+            ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+            String id; 
+            ArrayList<Integer> e = new ArrayList<>();
+            
+            x = trav.getValue();
+            id = trav.getKey();
+
+            if(cho == 1)
+            {
+                int q = rec.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 2)
+            {
+                int q = sq.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 3)
+            {
+                int q = sym.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 4)
+            {
+                int q = ske.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 5)
+            {
+                int q = row_.checker(id);
+                if(q == 0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 6)
+            {
+                int q = col_.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+        }
+    }
+
+    public static void display(String id)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = mat.getter_mat(id);
+        z = mat.getter_ord(id);
+
+        int o1 = z.get(0);
+        int o2 = z.get(1);
+
+        System.out.println("Matrix " + id + " is :");
+
+        for(int i=0; i<o1; i++)
+        {
+            for(int j=0; j<o2; j++)
+            {
+                System.out.print(x.get(i).get(j) + " ");
             }
             System.out.println();
         }
