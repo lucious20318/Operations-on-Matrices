@@ -1,6 +1,9 @@
 import java.util.*; 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.lang.model.util.ElementScanner14;
+
 import java.io.*;
 import java.lang.annotation.Retention;
 
@@ -16,19 +19,21 @@ public class Main
             System.out.println("\t   MAIN-MENU");
             System.out.println("--------------------------------");
             System.out.println("1. Enter the matrix");
-            System.out.println("2. Matrix labels");
-            System.out.println("3. Addition, Subtraction, Multiplication & Division");
-            System.out.println("4. Element wise operations");
-            System.out.println("5. Transpose matrix");
-            System.out.println("6. Inverse matrix");
-            System.out.println("7. Compute means: row-wise mean, column-wise mean, mean of all the elements");
-            System.out.println("8. Compute determinant");
-            System.out.println("9. Use singleton matrices as scalars, if requested");
-            System.out.println("10. Compute A+A' for a matrix A.");
-            System.out.println("11. Compute Eigen vectors and values.");
-            System.out.println("12. Solve sets of linear equations using matrices.");
-            System.out.println("13. Matrix with same labels");
-            System.out.println("14. Exit");
+            System.out.println("2. Enter the matrix of certian type");
+            System.out.println("3. Change existing matrix with same label");
+            System.out.println("4. Matrix labels");
+            System.out.println("5. Addition, Subtraction, Multiplication & Division");
+            System.out.println("6. Element wise operations");
+            System.out.println("7. Transpose matrix");
+            System.out.println("8. Inverse matrix");
+            System.out.println("9. Compute means: row-wise mean, column-wise mean, mean of all the elements");
+            System.out.println("10. Compute determinant");
+            System.out.println("11. Use singleton matrices as scalars, if requested");
+            System.out.println("12. Compute A+A' for a matrix A.");
+            System.out.println("13. Compute Eigen vectors and values.");
+            System.out.println("14. Solve sets of linear equations using matrices.");
+            System.out.println("15. Matrix with same labels");
+            System.out.println("16. Exit");
             System.out.println("--------------------------------");
 
             int opt = sc.nextInt();
@@ -40,65 +45,75 @@ public class Main
 
             else if(opt == 2)
             {
-                mat_labels();
+                input_type();
             }
 
-            else if(opt == 3)
+            else if(opt ==3)
             {
-                operations();
+                mat_input();
             }
 
             else if(opt == 4)
             {
-                ele_wise();
+                mat_labels();
             }
 
             else if(opt == 5)
             {
-                cal_trans();
+                operations();
             }
 
             else if(opt == 6)
             {
-                cal_inverse();
+                ele_wise();
             }
 
             else if(opt == 7)
             {
-                mean();
+                cal_trans();
             }
 
             else if(opt == 8)
             {
-                cal_det();
+                cal_inverse();
             }
 
             else if(opt == 9)
             {
-                single_ton();
+                mean();
             }
 
             else if(opt == 10)
             {
-                mat_add();
+                cal_det();
             }
 
             else if(opt == 11)
             {
-                eigen();
+                single_ton();
             }
 
             else if(opt == 12)
             {
-                linear_eq();
+                mat_add();
             }
 
             else if(opt == 13)
             {
-                retrieve_same();
+                eigen();
             }
 
             else if(opt == 14)
+            {
+                linear_eq();
+            }
+
+            else if(opt == 15)
+            {
+                retrieve_same();
+            }
+
+            else if(opt == 16)
             {
                 System.out.println("Exiting.......");
                 System.exit(0);
@@ -139,6 +154,125 @@ public class Main
     public static Ones ones_ = new Ones();
     
     //public static Null nul = new Null();
+
+    public static void input_type()
+    {
+        System.out.println("Enter the type of Matrix you want to enter:");
+        System.out.println("1. Rectangular");
+        System.out.println("2. Square");
+        System.out.println("3. Row");
+        System.out.println("4. Column");
+        System.out.println("5. Upper");
+        System.out.println("6. Lower");
+        System.out.println("7. Symmetric");
+        System.out.println("8. Skew");
+        System.out.println("9. Singular");
+        System.out.println("10. Diagonal");
+        System.out.println("11. Scalar");
+        System.out.println("12. Identity");
+        System.out.println("13. Singleton");
+        System.out.println("14. Ones");
+        System.out.println("15. Null");
+
+        System.out.print("\nChoice :");
+        int cho = sc.nextInt();
+
+        if(cho == 1)
+        {
+            System.out.println("Enter a matrix of any order");
+            mat_input();
+        }
+
+        else if(cho == 2)
+        {
+            System.out.println("Enter a matrix of same no of rows and columns");
+            mat_input();
+        }
+
+        else if(cho == 3)
+        {
+            System.out.println("Enter a matrix with only 1 row");
+            mat_input();
+        }
+
+        else if(cho == 4)
+        {
+            System.out.println("Enter a matrix with only 1 column");
+            mat_input();
+        }
+
+        else if(cho == 5)
+        {
+            System.out.println("Enter a square matrix with all the elements below it's diagonal as 0");
+            mat_input();
+        }
+
+        else if(cho == 6)
+        {
+            System.out.println("Enter a square matrix with all the elements above it's diagonal as 0");
+            mat_input();
+        }
+
+        else if(cho == 7)
+        {
+            System.out.println("Enter a square matrix whose transpose is equal to it");
+            mat_input();
+        }
+
+        else if(cho == 8)
+        {
+            System.out.println("Enter a square matrix whose transpose is equal to the negative matrix");
+            mat_input();
+        }
+
+        else if(cho == 9)
+        {
+            System.out.println("Enter a square matrix whose determinant is 0");
+            mat_input();
+        }
+
+        else if(cho == 10)
+        {
+            System.out.println("Enter a square matrix whose elements are 0 except it's diagonal elements");
+            mat_input();
+        }
+
+        else if(cho == 11)
+        {
+            System.out.println("Enter a diagonal matrix whose diagonal elements are same");
+            mat_input();
+        }
+
+        else if(cho == 12)
+        {
+            System.out.println("Enter a diagonal a matrix whose diagonal elements are 1");
+            mat_input();
+        }
+
+        else if(cho == 13)
+        {
+            System.out.println("Enter a matrix with only 1 element");
+            mat_input();
+        }
+
+        else if(cho == 14)
+        {
+            System.out.println("Enter a matrix with all it's element as 1");
+            mat_input();
+        }
+
+        else if(cho == 15)
+        {
+            System.out.println("Enter a matrix with all it's element as 0");
+            mat_input();
+        }
+
+        else
+        {
+            System.out.println("Wrong choice, Enter again");
+            input_type();
+        }
+    }
 
     public static void mat_input()
     {
