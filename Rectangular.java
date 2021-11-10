@@ -5,10 +5,10 @@ import java.io.*;
 
 public class Rectangular extends Matrix
 {
-    public void checker(String id)
+    public int checker(String id)
     {
         System.out.println(id + " is a rectangular matrix");
 
-        return;
+        return 0;
     }
 }
