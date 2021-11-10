@@ -91,7 +91,7 @@ public class Main
 
             else if(opt == 12)
             {
-                continue;
+                linear_eq();
             }
 
             else if(opt == 13)
@@ -387,7 +387,7 @@ public class Main
         {
             for (int j=0; j<w2; j++)
             {
-                for (int k=0; k<w2; k++)
+                for (int k=0; k<w1; k++)
                 {
                     mul[i][j] += x.get(i).get(k) * y.get(k).get(j);
                 }
@@ -905,7 +905,7 @@ public class Main
                 }
             }
 
-            else if(cho == 3)
+            else if(cho == 7)
             {
                 int q = sym.checker(id);
                 if(q==0)
@@ -914,7 +914,7 @@ public class Main
                 }
             }
 
-            else if(cho == 4)
+            else if(cho == 8)
             {
                 int q = ske.checker(id);
                 if(q==0)
@@ -923,7 +923,7 @@ public class Main
                 }
             }
 
-            else if(cho == 5)
+            else if(cho == 3)
             {
                 int q = row_.checker(id);
                 if(q == 0)
@@ -932,13 +932,100 @@ public class Main
                 }
             }
 
-            else if(cho == 6)
+            else if(cho == 4)
             {
                 int q = col_.checker(id);
                 if(q==0)
                 {
                     display(id);
                 }
+            }
+
+            else if(cho == 5)
+            {
+                int q = upp.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 6)
+            {
+                int q = low.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 9)
+            {
+                int q = sin.check(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 10)
+            {
+                int q = dia.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 11)
+            {
+                int q = sca.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 12)
+            {
+                int q = ide.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 13)
+            {
+                int q = single.checker(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 14)
+            {
+                int q = ones_.check_o(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else if(cho == 15)
+            {
+                int q = ones_.check_n(id);
+                if(q==0)
+                {
+                    display(id);
+                }
+            }
+
+            else
+            {
+                System.out.println("Wrong option, enter again");
+                retrieve_same();
             }
         }
     }
@@ -965,6 +1052,61 @@ public class Main
             }
             System.out.println();
         }
+    }
+
+    public static void linear_eq()
+    {
+        System.out.print("Enter the matrix id :");
+        String id1 = scan.next();
+
+        System.out.print("Choose a column matrix , this should have same number of rows as the one you entered just now :");
+        String id2 = scan.next();
+
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> y = new ArrayList<>();
+
+        ArrayList<Integer> z = new ArrayList<>();
+        ArrayList<Integer> w = new ArrayList<>();
+        
+        x = mat.getter_mat(id1);
+        y = mat.getter_mat(id2);
+
+        z = mat.getter_ord(id1);
+        w = mat.getter_ord(id2);
+
+        int z1 = z.get(0);
+
+        int w1 = w.get(0);
+        int w2 = w.get(1);
+
+        ArrayList<ArrayList<Float>> res_inv = new ArrayList<>();
+        float mul[][] = new float[z1][w2];
+
+        res_inv = Inverse.cal_inv(x,z1);
+
+        for (int i=0; i<z1; i++)
+        {
+            for (int j=0; j<w2; j++)
+            {
+                for (int k=0; k<w1; k++)
+                {
+                    mul[i][j] += res_inv.get(i).get(k)*y.get(k).get(j);
+                }
+            }
+        }
+
+        System.out.print("\nResultant matrix is :");
+        System.out.println();
+        for(int i=0; i<z1; i++)
+        {
+            for(int j=0; j<w2; j++)
+            {
+                System.out.print(mul[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+
     }
 }
 
