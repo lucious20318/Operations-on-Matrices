@@ -1,9 +1,4 @@
-import java.security.GeneralSecurityException;
 import java.util.*;
-
-import javax.crypto.AEADBadTagException;
-import javax.lang.model.util.ElementScanner14;
-import javax.swing.text.LayoutQueue;
 
 public class Main 
 {
@@ -849,7 +844,71 @@ public class Main
 
     public static void eigen()
     {
+        
+        System.out.println("Calcuate");
+        System.out.println("1. Eigen-value");
+        System.out.println("2. Eigen-vector");
 
+        System.out.print("\nChoice :");
+        int cho = sc.nextInt();
+
+        if(cho == 1)
+        {
+            ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+            
+            ArrayList<Integer> z = new ArrayList<>();
+
+            System.out.print("\nEnter the id of the matrix: ");
+            String id = scan.next();
+        
+            x = mat.getter_mat(id);
+
+            float m11 = x.get(0).get(0);
+            float m12 = x.get(0).get(1);
+            float m21 = x.get(1).get(0);
+            float m22 = x.get(1).get(1);
+
+            float xp = m12*m21;
+            float sub = m11-m22;
+            float add = m11+m22;
+
+            double e1 = ((add)+Math.sqrt(Math.pow(sub,2) + 4*xp)) / 2;
+            double e2 = ((add)-Math.sqrt(Math.pow(sub,2) + 4*xp)) / 2;
+
+            System.out.print("\nThe eigenvalues of the matrix " + id + " is: ");
+            System.out.print("\n" + e2);
+            System.out.print("\n" + e1);
+        }
+
+        else if(cho == 2)
+        {
+            ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+            
+            ArrayList<Integer> z = new ArrayList<>();
+
+            System.out.print("\nEnter the id of the matrix: ");
+            String id = scan.next();
+        
+            x = mat.getter_mat(id);
+
+            float m11 = x.get(0).get(0);
+            float m12 = x.get(0).get(1);
+            float m21 = x.get(1).get(0);
+            float m22 = x.get(1).get(1);
+
+            float xp = m12*m21;
+            float sub = m11-m22;
+            float add = m11+m22;
+
+            double e1 = ((add)+Math.sqrt(Math.pow(sub,2) + 4*xp)) / 2;
+            double e2 = ((add)-Math.sqrt(Math.pow(sub,2) + 4*xp)) / 2;
+        }
+
+        else
+        {
+            System.out.println("Wrong option , Enter again:");
+            eigen();
+        }
     }
 
     public static void retrieve_same()
