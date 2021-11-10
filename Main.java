@@ -895,6 +895,10 @@ public class Main
         
             x = mat.getter_mat(id);
 
+            z = mat.getter_ord(id);
+
+            int ord = z.get(0);
+
             float m11 = x.get(0).get(0);
             float m12 = x.get(0).get(1);
             float m21 = x.get(1).get(0);
@@ -907,9 +911,33 @@ public class Main
             double e1 = ((add)+Math.sqrt(Math.pow(sub,2) + 4*xp)) / 2;
             double e2 = ((add)-Math.sqrt(Math.pow(sub,2) + 4*xp)) / 2;
 
-            
-        }
+            System.out.print("\nThe eigenvalues of the matrix " + id + " is: ");
+            System.out.print("\n" + e2);
+            System.out.print("\n" + e1);
 
+            if(m11-e1==0) 
+            {
+                System.out.println("\nEigenvector 1: 0, 0");
+            }
+
+            else
+            {
+                double val1 =- m12/(m11-e1);
+                System.out.println("\nEigenvector 1: 1, "+ val1);
+            }
+        
+            if(m11-e2==0) 
+            {
+                System.out.println("\nEigenector 2: 0, 0");
+            }
+            
+            else
+            {
+                double val2 =- m12/(m11-e2);
+                System.out.println("\nEigenvector 2: 1, " + val2);
+            }
+        }
+            
         else
         {
             System.out.println("Wrong option , Enter again:");
