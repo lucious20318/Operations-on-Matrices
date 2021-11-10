@@ -6,7 +6,7 @@ import java.io.*;
 public class Ones extends Rectangular
 {
     
-    public int check(String id)
+    public int check_o(String id)
     {
         ArrayList<ArrayList<Integer>> x = new ArrayList<>();
         ArrayList<Integer> z = new ArrayList<>();
@@ -35,7 +35,23 @@ public class Ones extends Rectangular
         if(flag == 0)
         {
             System.out.println(id + " is a ones matrix");
+            return 0;
         }
+
+        return 1;
+    }
+
+    public int check_n(String id)
+    {
+        ArrayList<ArrayList<Integer>> x = new ArrayList<>();
+        ArrayList<Integer> z = new ArrayList<>();
+
+        x = getter_mat(id);
+        
+        z = getter_ord(id);
+
+        int o1 = z.get(0);
+        int o2 = z.get(1);
 
         int f = 0;
 
@@ -54,8 +70,9 @@ public class Ones extends Rectangular
         if(f == 0)
         {
             System.out.println(id + " is a null matrix");
+            return 0;
         }
     
-        return f;
+        return 1;
     }
 }
